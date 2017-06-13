@@ -1,0 +1,8 @@
+@import '../styles/variable.css';
+
+.dog {
+  & span {
+      font-size: 20px;
+      color: var(--primary);
+  }
+}
