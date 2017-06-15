@@ -4,6 +4,11 @@ const ROOT_PATH = process.cwd();
 
 module.exports = {
   webpack: config => {
+    if (config.resolve.alias) {
+      delete config.resolve.alias['react']
+      delete config.resolve.alias['react-dom']
+    }
+
     config.module.rules.push({
       test: /\.css$/,
       use: [
@@ -23,7 +28,7 @@ module.exports = {
               return [
                 'module.exports = {',
                 `classNames: ${classNames},`,
-                `stylesheet: \`${content}\``,
+                `stylesheet: ${JSON.stringify(content)}`,
                 '}',
               ].join('');
             },
